@@ -56,7 +56,7 @@ This section explains the methodology used to convert BIM into Unity and develop
 
 ### Converting BIM into Unity
 
-
+The first step was converting the BIM into a file format that Unity accepts. Importing BIM files directly into Unity loses the model's textures and meta-data. However, importing an acceptable file format like FBX will retain the model's texture and data. I used Autodesk 3ds Max to export the mechanical, structural, and architectural BIM files into FBX with textures, lighting, and meta-data. Then, I exported the FBX files into Unity
 
 ### Connecting Live Data Feeds
 
