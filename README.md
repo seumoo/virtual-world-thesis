@@ -1,12 +1,22 @@
 # Converting BIM to Virtual World for Facility Management Operations
 
-This article summarizes my undergraduate thesis work: converting Building Information Models (BIM) into virtual worlds for facility management (FM) operations.  
+This article summarizes my undergraduate thesis work - converting Building Information Models (BIM) into virtual worlds for facility management (FM) operations. You can read my thesis work from the following:
+
+- ICCCBE 2016 (PDF)
+- Undergraduate thesis submission (PDF)
+
+**Technologies Used**: Autodesk Revit, Unity, Python, JavaScript, C#, SQL
 
 ## Table of Contents
   - [Background & Problem Statement](#background--problem-statement)
   - [Objective](#objective)
   - [Methodology](#methodology)
+    - [Converting BIM into Unity](#converting-bim-into-unity)
+    - [Connecting Live Data Feeds](#connecting-live-data-feeds)
+    - [](#)
+    - [Integrating Equipment Interactions](#integrating-equipment-interactions)
   - [Results](#results)
+
 
 ## Background & Problem Statement
 
@@ -21,9 +31,7 @@ Since buildings have dynamic facility systems, monitoring building health in rea
 - Disturbing an office space when searching for problematic duct systems in a ceiling
 - Faulty thermostat readings leading to room temperature issues
 
-I explored using virtual worlds to help FM operations be less constrained by physical and data limitations. A virtual world is a digital twin of a physical space rendered in a gaming engine. Converting BIM into a gaming engine allows you to integrate interactivity components, including physical movement, object interactivity, and database incorporation. These components are difficult or impossible to incorporate in BIM using standard BIM tools.
-
-
+I researched virtual worlds for FM operations to help mitigate physical and data limitations that facility managers face.  A virtual world is a digital twin of a physical space rendered in a gaming engine. Converting BIM into a gaming engine allows you to integrate interactivity components, including physical movement, object interactivity, and database incorporation. These components are difficult or impossible to incorporate in BIM using standard BIM tools.
 
 ## Objective
 
@@ -36,17 +44,19 @@ The objective of my thesis to use the Unity game engine to develop a virtual wor
 
 </br>
 
-I developed the following interactions to help with FM operations:
+In the virtual world, I developed the following interactions:
 
 - First-person movement for users to navigate the facility
 - Facility databases which streams real-time data of equipment including sensors, thermostats, and HVAC units
 - Interaction with equipment to display data from the database stream
-- An interface which detects connecting pipe segments for fire sprinklers
+- Pipe segment detection for fire sprinklers
+
+Figure 2 shows a sample interaction with an air handling unit (AHU) where the interface displays real-time sensor data from the AHU. The next section explains my methodology to develop this virtual world.
 
 </br>
 
 <img src="./media/movement_demo.gif" width="724" height="490" />
-<figcaption><b>Figure 2: Interaction with equipment and data in the virtual world</b></figcaption>
+<figcaption><b>Figure 2: Interaction with equipment in the virtual world</b></figcaption>
 
 </br>
 
@@ -56,16 +66,44 @@ This section explains the methodology used to convert BIM into Unity and develop
 
 ### Converting BIM into Unity
 
-The first step was converting the BIM into a file format that Unity accepts. Importing BIM files directly into Unity loses the model's textures and meta-data. However, importing an acceptable file format like FBX will retain the model's texture and data. I used Autodesk 3ds Max to export the mechanical, structural, and architectural BIM files into FBX with textures, lighting, and meta-data. Then, I exported the FBX files into Unity
+The first step was converting the BIM into a file format that Unity accepts. Importing BIM files directly into Unity loses the model's textures and meta-data. However, importing an acceptable file format like FBX will retain the model's texture and data (Figure 3a). I used Autodesk 3ds Max to export the mechanical, structural, and architectural BIM files into FBX with textures, lighting, and meta-data. I exported the FBX files into Unity and verified the textures, lighting, and meta-data in the model were still intact (Figure 3b).
+
+
+</br>
+
+<img src="./media/model_comparison.png" width="1000" height="300" />
+<figcaption><b>Figure 3: Model comparison based on import method</b></figcaption>
+
+</br>
+
+### Adding Player Movement
+
+I utilized Unity assets to add player movement so players could navigate the virtual world. I developed JavaScript scripts to allow players to navigate the model in a first-person perspective. I added colliders to all model elements including doors, walls, floors, and equipment. Colliders prevent players from walking through elements and another layer of realism to the virtual world.
+
+Next, I developed scripts in Unity to connect to a database with live data feeds from sensors and facility equipment.
+
 
 ### Connecting Live Data Feeds
 
-### 
+I completed the following steps to connect live data feeds into the virtual world (Figure 4):
+
+1. Requested facility data from the facility's Building automation systems (BAS) using REST requests
+2. Stored BAS data into a SQL database so data can be imported into Unity
+3. Developed C# scripts in Unity to connect the virtual world with the SQL database
+
+Next, I developed scripts so players could interact with equipment and view data feeds.
+
+<img src="./media/bas.jpg" width="1000" height="200" />
+<figcaption><b>Figure 4: Connecting BAS data into the virtual world</b></figcaption>
+
 
 ### Integrating Equipment Interactions
 
-<img src="./media/bas.jpg" width="1000" height="200" />
-<figcaption><b>Figure 4: Object detection from point cloud stream (3/4th view)</b></figcaption>
+To integrate equipment interactions, I developed a user interface (UI) in JavaScript to display equipment data from the SQL database. The UI extracts an equipment's ID, queries the database via ID to return the equipment's readings and health status, and displays the equipment's information in a popup. 
+
+Next, I added a click event to all equipment in the virtual world including HVAC units, mechanical systems, and sensors. When a player clicks on an equipment element, a popup will appear and display the equipment's live data feeds and health status.
+
+### Detecting Pipe Segments for Fire Sprinklers
 
 ## Results
 
