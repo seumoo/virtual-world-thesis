@@ -96,18 +96,72 @@ Next, I developed scripts so players could interact with equipment and view data
 <img src="./media/bas.jpg" width="1000" height="200" />
 <figcaption><b>Figure 4: Connecting BAS data into the virtual world</b></figcaption>
 
-
 ### Integrating Equipment Interactions
 
-To integrate equipment interactions, I developed a user interface (UI) in JavaScript to display equipment data from the SQL database. The UI extracts an equipment's ID, queries the database via ID to return the equipment's readings and health status, and displays the equipment's information in a popup. 
+To integrate equipment interactions, I developed a user interface (UI) in JavaScript to display equipment data from the SQL database (Figure 5). The UI extracts an equipment's ID, queries the database via ID to return the equipment's readings and health status, and displays the equipment's information in a popup. 
 
-Next, I added a click event to all equipment in the virtual world including HVAC units, mechanical systems, and sensors. When a player clicks on an equipment element, a popup will appear and display the equipment's live data feeds and health status.
+</br>
+
+<img src="./media/ac_data.jpg" width="357" height="177" />
+<figcaption><b>Figure 5: UI of an air handling unit</b></figcaption>
+
+</br>
+
+Next, I added a click event to all equipment in the virtual world including HVAC units, mechanical systems, and sensors. When a player clicks on an equipment element, a popup will appear and display the equipment's live data feeds and health status (Figures 6 & 7).
+
+</br>
+
+<img src="./media/large_room.gif" width="724" height="490"/>
+<figcaption><b>Figure 6: Viewing equipment data in an office space</b></figcaption>
+
+</br>
+
+</br>
+
+<img src="./media/doas_movement.gif" width="724" height="490"/>
+<figcaption><b>Figure 7: Viewing data from dedicated outdoor air systems (DOAS)  </b></figcaption>
+
+</br>
 
 ### Detecting Pipe Segments for Fire Sprinklers
 
+To establish relationships between flow systems such as pipe networks and their connections to valves, Industry Foundation Classes (IFC) data exported from the BIM was used. IFC is a BIM specification which establishes a model’s entities and their properties within a model. Properties include physical attributes such as dimensions, spatial attributes such as the Cartesian coordinate of the entity, meta-data such as the entity’s type, and relationships between other entities.
+
+Figure 8 shows a sample of an IFC file and its contents. IFC establishes flow systems under the `IFCRELASSIGNSTOGROUP` class which contain IFC lines as its attributes. IFC lines refer to a specific component or component property such as
+
+-  `IFCFLOWFITTING`: describes a single entity such as a valve or 
+-  `IFCDISTRUBUTIONPORT`: describes an inlet or outlet
+
+IFC IDs are unique randomly generated IDs given to each component in the model.
+
+</br>
+
+<img src="./media/ifc_sample.JPG" width="720" height="286"/>
+<figcaption><b>Figure 8: Sample of IFC data</b></figcaption>
+
+</br>
+
+To convert textual IFC relationships into interactive flow systems within the virtual world, I developed Python and C# scripts to parse IFC data and link flow systems. (Figure 9).
+
+</br>
+
+<img src="./media/ifc_flowchart.png" width="800" height="125"/>
+<figcaption><b>Figure 9: Process of integrating IFC relationships into the virtual world</b></figcaption>
+
+</br>
+
+</br>
+
+<img src="./media/pipes_1.gif" width="757" height="446"/>
+<figcaption><b>Figure 7: Viewing data from dedicated outdoor air systems (DOAS)  </b></figcaption>
+
+</br>
+
+</br>
+
+<img src="./media/pipes_2.gif" width="757" height="446"/>
+<figcaption><b>Figure 7: Viewing data from dedicated outdoor air systems (DOAS)  </b></figcaption>
+
+</br>
+
 ## Results
-
-
-<video width="640" height="400" controls>
-  <source src="./media/large_room_noaudio.mp4" type="video/mp4">
-</video>
