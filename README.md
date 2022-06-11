@@ -90,7 +90,7 @@ I completed the following steps to connect live data feeds into the virtual worl
 
 Next, I developed scripts so players could interact with equipment and view data feeds.
 
-<img src="./media/bas.jpg" width="1000" height="200" />
+<img src="./media/bas.JPG" width="1000" height="200" />
 <figcaption><b>Figure 4: Connecting BAS data into the virtual world</b></figcaption>
 
 ### Integrating Equipment Interactions
@@ -99,7 +99,7 @@ I developed a user interface (UI) in JavaScript to integrate equipment interacti
 
 </br>
 
-<img src="./media/ac_data.jpg" width="357" height="177" />
+<img src="./media/ac_data.JPG" width="357" height="177" />
 <figcaption><b>Figure 5: UI of an air handling unit</b></figcaption>
 
 </br>
