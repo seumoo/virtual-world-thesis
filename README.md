@@ -145,11 +145,7 @@ To convert textual IFC relationships into interactive flow systems within the vi
 
 </br>
 
-I wrote a Python script to parse all flow system relationships in the IFC file. The
-script looks at all the IFC Lines contained in the class `IFCRELASSIGNSTOGROUP`,
-which defines a relationship, and extracts the IFC ID of each component into a list. The
-lists of IFC IDs are then exported as a CSV file with each row being a single relationship.
-Table 1 shows a small sample of the CSV created by the parsing script.
+I wrote a Python script to parse all flow system relationships in the IFC file. The script looks at all the IFC Lines contained in the class IFCRELASSIGNSTOGROUP, which defines a relationship, and extracts the IFC ID of each component into a list. The list defines rows as individual IFC relationships and columns as IFC IDs belonging to that relationship (Table 1).
 
 **Table 1: Sample of pipe system relationships using IFC IDs**
 
@@ -159,7 +155,7 @@ Table 1 shows a small sample of the CSV created by the parsing script.
 | **Relationship 2** |    789    |    1011   |    1213   |
 | **Relationship 3** |    1415   |    1617   |           |
 
-Next, I wrote C# scripts in Unity to establish system relationships by linking game model components to the relationships established from the CSV data (Figure 10). For each relationship list, the script searches for any pipe or valve element containing the IFC ID. When an element with matching ID is found, it is stored in a `List<GameObject>` with other elements within the relationship. This list is then attached to the element, establishing the link between this element and other elements within it's relationship. This linkage enables elements within a relationship to be highlighted. 
+Next, I wrote C# scripts in Unity to establish system relationships by linking game model components to the relationships based on the CSV data (Figure 10). The script searches for any pipe or valve element containing the IFC ID for each relationship list. The element with the matching ID is stored `List<GameObject>` with other elements in the relationship.
 
 </br>
 
@@ -168,7 +164,7 @@ Next, I wrote C# scripts in Unity to establish system relationships by linking g
 
 </br>
 
-When the player clicks on a valve, a popup will appear allowing the player to highlight all connecting pipes from the valve (Figures 11 & 12). This highlight feature is useful for facility managers to track pipes for maintenance or troubleshooting faulty valves.
+When the player clicks on a valve, a popup will appear, allowing the player to highlight all connecting pipes from the valve (Figures 11 & 12). This highlight feature is helpful for facility managers to track pipes for maintenance or troubleshoot faulty valves.
 
 </br>
 
@@ -186,4 +182,4 @@ When the player clicks on a valve, a popup will appear allowing the player to hi
 
 ## Results
 
-From my thesis research, I created a virtual world that helped facility managers streamline facility operations. Managers could interact with equipment to view real-time facility data and monitor equipment health without physically being at the site. Viewing equipment data remotely allowed facility managers to detect issues quickly and identify faulty systems. Integrating pipe system logic was also valuable for facility managers to identify defective pipe segments from valves.
+My thesis research created a virtual world that helped facility managers streamline facility operations. Managers could interact with equipment to view real-time facility data and monitor equipment health without physically being at the site. Viewing equipment data remotely allowed facility managers to detect issues quickly and identify faulty systems. Integrating pipe system logic was also valuable for facility managers to identify defective pipe segments from valves.
